@@ -153,7 +153,10 @@ module Mongoid::Orderable
   end
 
   def add_to_list
-    apply_position @move_to.to_i
+    unless @move_to.is_a?(Symbol) || @move_to.nil?
+      @move_to = @move_to.to_i
+    end
+    apply_position @move_to
   end
 
   def remove_from_list
